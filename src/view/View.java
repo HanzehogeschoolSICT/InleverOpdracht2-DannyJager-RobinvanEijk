@@ -13,7 +13,7 @@ class View extends GridPane {
 
     private static final int gap = 10;
 
-    CharacterModel characterModel;
+    private CharacterModel characterModel;
 
     /**
      * Constructs the view for the boggle field.
