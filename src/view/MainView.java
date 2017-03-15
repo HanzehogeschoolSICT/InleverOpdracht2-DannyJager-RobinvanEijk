@@ -10,14 +10,21 @@ import javafx.stage.Stage;
 public class MainView extends Application {
 
     public static void launchApplication(String[] args){
+
+        // Launch the application
         System.out.println("Launching the boggle application");
         launch(args);
+
     }
+
+    @Override
     public void start(Stage stage){
+
         stage.setTitle("Boggle Opgave");
         View view = new View();
         Scene scene = new Scene(view,600,600);
         stage.setScene(scene);
         stage.show();
+        
     }
 }
