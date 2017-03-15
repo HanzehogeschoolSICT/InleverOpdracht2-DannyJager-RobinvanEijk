@@ -2,6 +2,7 @@ package view;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -9,18 +10,39 @@ import javafx.stage.Stage;
  */
 public class MainView extends Application {
 
-    public static void launchApplication(String[] args){
-        // Launch the application
-        System.out.println("Launching the boggle application");
-        launch(args);
+    // The GridPaneView that extends the GridPane
+    private GridPaneView gridPaneView;
+
+    /**
+     * Constructor
+     */
+    public MainView() {
+
     }
 
+    /**
+     * Launches the application
+     */
+    public void launchApplication(){
+        launch();
+    }
+
+    /**
+     * Starts the GUI.
+     *
+     * @param stage
+     */
     @Override
     public void start(Stage stage){
+
         stage.setTitle("Boggle Opgave");
-        View view = new View();
-        Scene scene = new Scene(view,view.getWidth(),view.getHeight());
+
+        // Instantiate the GridPaneView
+        this.gridPaneView = new GridPaneView();
+
+        Scene scene = new Scene(gridPaneView,gridPaneView.getWidth(),gridPaneView.getHeight());
         stage.setScene(scene);
         stage.show();
+        
     }
 }

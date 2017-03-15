@@ -11,7 +11,7 @@ import model.CharacterModel;
  * Class for the view of the boggle field which contains the characters.
  * Created by robin on 13-3-17.
  */
-public class View extends GridPane {
+public class GridPaneView extends GridPane {
 
     private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
@@ -22,7 +22,7 @@ public class View extends GridPane {
     /**
      * Constructs the view for the boggle field with the characters in it.
      */
-    public View() {
+    public GridPaneView() {
 
         // Create the CharacterModel
         characterModel = new CharacterModel();
@@ -62,7 +62,7 @@ public class View extends GridPane {
 
 
     /**
-     * Creates and returns a Label with a random character from the alfabet in it, and sets the correct style.
+     * Creates and returns a Label with a random character from the alphabet in it, and sets the correct style.
      * @return Label
      */
     private Label createLabel(){
