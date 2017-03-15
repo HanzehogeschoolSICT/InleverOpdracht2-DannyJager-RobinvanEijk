@@ -1,7 +1,10 @@
 package view;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 /**
@@ -19,10 +22,9 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage stage){
-
         stage.setTitle("Boggle Opgave");
         View view = new View();
-        Scene scene = new Scene(view,600,600);
+        Scene scene = new Scene(view,view.getWidth(),view.getHeight());
         stage.setScene(scene);
         stage.show();
 
