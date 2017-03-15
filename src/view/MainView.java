@@ -10,11 +10,9 @@ import javafx.stage.Stage;
 public class MainView extends Application {
 
     public static void launchApplication(String[] args){
-
         // Launch the application
         System.out.println("Launching the boggle application");
         launch(args);
-
     }
 
     @Override
@@ -24,6 +22,5 @@ public class MainView extends Application {
         Scene scene = new Scene(view,view.getWidth(),view.getHeight());
         stage.setScene(scene);
         stage.show();
-
     }
 }

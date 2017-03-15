@@ -13,9 +13,9 @@ import model.CharacterModel;
  */
 public class View extends GridPane {
 
-    private static final int gap = 7;              // The size of the gaps between the labels
+    private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
-    private static final int labelamount = 3;       // The amount columns and labels per column
+    private static final int labelamount = 4;       // The amount columns and labels per column
 
     private CharacterModel characterModel;
 
@@ -53,8 +53,8 @@ public class View extends GridPane {
         this.setPadding(new Insets(gap, gap, gap, gap));
 
         // Set the size of this view
-        this.setHeight(labelSize*labelamount+gap*3);
-        this.setWidth(labelSize*labelamount+gap*3);
+        this.setHeight(labelSize*labelamount);
+        this.setWidth(labelSize*labelamount);
 
         // Set the background color to the original boggle orange/yellow.
         this.setStyle("-fx-background-color: #FE9A2E;");
