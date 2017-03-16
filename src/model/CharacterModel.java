@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,7 +10,8 @@ import java.util.Random;
 public class CharacterModel {
 
     // Set of characters of the alphabet
-    private char[] setOfCharacters;
+    private static List<String> setOfCharacters;
+
 
 
     /**
@@ -17,22 +20,29 @@ public class CharacterModel {
      */
     public CharacterModel() {
 
-        setOfCharacters = new char[]{
-                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
-                'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-                'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        String[] tempCharacters = new String[]{
+                "A", "B", "C", "D", "E", "F", "G", "H", "I",
+                "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+                "S", "T", "U", "V", "W", "X", "Y", "Z"
         };
+
+        setOfCharacters = new ArrayList<String>();
+
+        for (String value : tempCharacters) {
+            setOfCharacters.add(value);
+        }
+
 
     }
 
     /**
      * Generate and return a random character
      *
-     * @return char random character
+     * @return String random character
      */
-    public char generateRandomCharacter() {
-        int randomChar = new Random().nextInt(26);
-        return setOfCharacters[randomChar];
+    public static String generateRandomCharacter() {
+        int randomNumber = new Random().nextInt(26);
+        return setOfCharacters.get(randomNumber);
     }
 
 }

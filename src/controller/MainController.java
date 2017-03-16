@@ -1,7 +1,10 @@
 package controller;
 
 import model.CharacterModel;
+import view.GridPaneView;
 import view.MainView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Danny on 15-3-2017.
@@ -20,6 +23,7 @@ public class MainController {
      */
     public MainController(MainView view) {
         this.view = view;
+        System.out.println();
         this.model = new CharacterModel();
     }
 
@@ -30,4 +34,5 @@ public class MainController {
         System.out.println("Launching the boggle application");
         this.view.launchApplication();
     }
+
 }
