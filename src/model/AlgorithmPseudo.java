@@ -5,6 +5,11 @@ package model;
  */
 public class AlgorithmPseudo {
 
+    /**
+     * Kan geimplementeerd worden zodra de datastructuur gereed is.
+     *
+     * Dit is het idee wat ik van het algoritme kreeg. Misschien zit het er wel helemaal naast.
+     */
     public void boggleSolve() {
          /*
          select first character
