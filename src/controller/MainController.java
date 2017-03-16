@@ -1,10 +1,7 @@
 package controller;
 
 import model.CharacterModel;
-import view.GridPaneView;
 import view.MainView;
-
-import java.util.ArrayList;
 
 /**
  * Created by Danny on 15-3-2017.
