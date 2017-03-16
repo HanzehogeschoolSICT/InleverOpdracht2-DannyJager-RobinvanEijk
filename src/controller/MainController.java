@@ -9,19 +9,22 @@ import view.MainView;
 public class MainController {
 
     // The MainView
-    private MainView view;
+    private MainView mainView;
 
     // The CharacterModel
     private CharacterModel model;
 
+    public static void main(String[] args) {
+        MainController mc = new MainController();
+    }
+
     /**
      * Constructor. Sets the views and models.
-     * @param view
      */
-    public MainController(MainView view) {
-        this.view = view;
-        System.out.println();
+    public MainController() {
+        this.mainView = new MainView();
         this.model = new CharacterModel();
+        launch();
     }
 
     /**
@@ -29,7 +32,7 @@ public class MainController {
      */
     public void launch() {
         System.out.println("Launching the boggle application");
-        this.view.launchApplication();
+        this.mainView.launchApplication();
     }
 
 }

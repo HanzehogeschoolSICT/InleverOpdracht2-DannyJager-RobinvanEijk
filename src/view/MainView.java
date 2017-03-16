@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import model.CharacterModel;
 
 /**
+ * Class which contains the View for the application and starts it.
  * Created by robin on 13-3-17.
  */
 public class MainView extends Application {
