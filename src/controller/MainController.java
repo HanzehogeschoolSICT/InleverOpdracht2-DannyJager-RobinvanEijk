@@ -11,10 +11,6 @@ public class MainController {
     // The MainView
     private MainView mainView;
 
-    public static void main(String[] args) {
-        MainController mc = new MainController();
-    }
-
     /**
      * Constructor. Sets the views and models.
      */
