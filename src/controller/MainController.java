@@ -11,9 +11,6 @@ public class MainController {
     // The MainView
     private MainView mainView;
 
-    // The CharacterModel
-    private CharacterModel model;
-
     public static void main(String[] args) {
         MainController mc = new MainController();
     }
@@ -23,7 +20,6 @@ public class MainController {
      */
     public MainController() {
         this.mainView = new MainView();
-        this.model = new CharacterModel();
         launch();
     }
 

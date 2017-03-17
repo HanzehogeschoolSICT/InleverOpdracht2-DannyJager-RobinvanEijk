@@ -24,20 +24,24 @@ public class MainView extends Application {
     private static final double labelSize = 100;    // The height and width of the labels
     private static final int labelamount = 4;       // The amount columns and labels per column
 
-    // The field that holds the random generated characters
-    private String[][] generatedCharacters;
+    private String[][] charactersOnBoard;
+
+    private CharacterModel characterModel;
 
     /**
      * Constructs the mainView of the application.
      */
     public MainView(){
         // Constructs
+        charactersOnBoard = new String[labelamount][labelamount];
+        this.characterModel = new CharacterModel();
     }
 
     /**
      * Launches the JavaFX application
      */
     public void launchApplication() {
+        // Initialize the models
         launch();
     }
 
@@ -68,6 +72,13 @@ public class MainView extends Application {
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
         stage.show();
+
+        for (String[] x : charactersOnBoard) {
+            for (String v : x) {
+                System.out.print(v + " ");
+            }
+            System.out.println();
+        }
     }
 
 
@@ -84,8 +95,10 @@ public class MainView extends Application {
         // Create the labelAmount x labelAmount grid with labels in it
         for (int i = 0; i < labelamount; i++) {
             for (int j = 0; j < labelamount; j++){
-                Label label = createBoggleLabel();
+                String randomCharacter = characterModel.generateRandomCharacter();
+                Label label = createBoggleLabel(randomCharacter);
                 gridPane.add(label,j,i);
+                charactersOnBoard[i][j] = randomCharacter;
             }
         }
         return gridPane;
@@ -115,9 +128,9 @@ public class MainView extends Application {
      * Creates and returns a Label with a random character from the alphabet in it, and sets the correct style.
      * @return Label
      */
-    private Label createBoggleLabel(){
+    private Label createBoggleLabel(String randomCharacter){
         //Create new label with a random character in it
-        Label label = new Label(CharacterModel.generateRandomCharacter());
+        Label label = new Label(randomCharacter);
 
         // Set the layout of the label
         label.setFont(new Font(35));

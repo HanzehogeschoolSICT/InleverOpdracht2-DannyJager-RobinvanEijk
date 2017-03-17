@@ -10,9 +10,7 @@ import java.util.Random;
 public class CharacterModel {
 
     // Set of characters of the alphabet
-    private static List<String> setOfCharacters;
-
-
+    private List<String> setOfCharacters;
 
     /**
      * Constructor method
@@ -40,7 +38,7 @@ public class CharacterModel {
      *
      * @return String random character
      */
-    public static String generateRandomCharacter() {
+    public String generateRandomCharacter() {
         int randomNumber = new Random().nextInt(26);
         return setOfCharacters.get(randomNumber);
     }
