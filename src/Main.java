@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Create a controller
-        //MainController controller = new MainController();
+        MainController controller = new MainController();
 
 //        BST<String> bst = new BST<>();
 //        bst.add("A");

@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import model.BST;
 import model.CharacterModel;
 
 /**
@@ -28,6 +29,8 @@ public class MainView extends Application {
 
     private CharacterModel characterModel;
 
+    private BST<String> binarySearchTree;
+
     /**
      * Constructs the mainView of the application.
      */
@@ -35,6 +38,7 @@ public class MainView extends Application {
         // Constructs
         charactersOnBoard = new String[labelamount][labelamount];
         this.characterModel = new CharacterModel();
+        this.binarySearchTree = new BST<String>();
     }
 
     /**
@@ -73,12 +77,16 @@ public class MainView extends Application {
         stage.setScene(scene);
         stage.show();
 
+        /** Tijdelijk */
         for (String[] x : charactersOnBoard) {
             for (String v : x) {
                 System.out.print(v + " ");
+                binarySearchTree.add(v);
             }
             System.out.println();
         }
+       binarySearchTree.postorder();
+
     }
 
 
