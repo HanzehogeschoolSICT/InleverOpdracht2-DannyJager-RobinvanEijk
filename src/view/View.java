@@ -11,8 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.BST;
-import model.CharacterModel;
+import model.BoardCharacter;
+import model.Model;
 
 /**
  * Class which contains the View for the application and starts it.
@@ -23,22 +23,17 @@ public class MainView extends Application {
     // Variables to create the BoggleField
     private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
-    private static final int labelamount = 3;       // The amount columns and labels per column
 
-    private String[][] charactersOnBoard;
+    private BoardCharacter[][] field;
+    private Model model;
 
-    private CharacterModel characterModel;
-
-    private BST<String> binarySearchTree;
 
     /**
      * Constructs the mainView of the application.
      */
     public MainView(){
-        // Constructs
-        charactersOnBoard = new String[labelamount][labelamount];
-        this.characterModel = new CharacterModel();
-        this.binarySearchTree = new BST<String>();
+        this.model = new Model();
+        field = model.getField();
     }
 
     /**
@@ -77,16 +72,6 @@ public class MainView extends Application {
         stage.setScene(scene);
         stage.show();
 
-        /** Tijdelijk */
-        for (String[] x : charactersOnBoard) {
-            for (String v : x) {
-                System.out.print(v + " ");
-                binarySearchTree.add(v);
-            }
-            System.out.println();
-        }
-       binarySearchTree.postorder();
-
     }
 
 
@@ -100,14 +85,17 @@ public class MainView extends Application {
         // Set the layout of the boggleField
         setBoggleFieldLayout(gridPane);
 
-        // Create the labelAmount x labelAmount grid with labels in it
-        for (int i = 0; i < labelamount; i++) {
-            for (int j = 0; j < labelamount; j++){
-                String randomCharacter = characterModel.generateRandomCharacter();
-                Label label = createBoggleLabel(randomCharacter);
-                gridPane.add(label,j,i);
-                charactersOnBoard[i][j] = randomCharacter;
+
+        // Adds characters from the 2d array of BoardCharacters (field) to the gridPane
+        int x = 0;
+        for (BoardCharacter[] boardCharacters : field) {
+            int y = 0;
+            for (BoardCharacter boardCharacter : boardCharacters) {
+                Label label = createBoggleLabel(boardCharacter.getCharacter());
+                gridPane.add(label, y, x);
+                y++;
             }
+            x++;
         }
         return gridPane;
     }
@@ -136,9 +124,9 @@ public class MainView extends Application {
      * Creates and returns a Label with a random character from the alphabet in it, and sets the correct style.
      * @return Label
      */
-    private Label createBoggleLabel(String randomCharacter){
+    private Label createBoggleLabel(char randomCharacter){
         //Create new label with a random character in it
-        Label label = new Label(randomCharacter);
+        Label label = new Label(randomCharacter + "");
 
         // Set the layout of the label
         label.setFont(new Font(35));

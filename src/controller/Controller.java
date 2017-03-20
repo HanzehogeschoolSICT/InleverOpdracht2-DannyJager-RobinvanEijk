@@ -1,5 +1,6 @@
 package controller;
 
+import model.Model;
 import view.MainView;
 
 /**
@@ -9,13 +10,16 @@ public class MainController {
 
     // The MainView
     private MainView mainView;
+    private Model model;
 
     /**
      * Constructor. Sets the views and models.
      */
     public MainController() {
+        this.model = new Model();
         this.mainView = new MainView();
         launch();
+
     }
 
     /**
