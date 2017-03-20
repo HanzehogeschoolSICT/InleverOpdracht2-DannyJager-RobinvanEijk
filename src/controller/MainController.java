@@ -1,6 +1,5 @@
 package controller;
 
-import model.CharacterModel;
 import view.MainView;
 
 /**

@@ -23,7 +23,7 @@ public class BST<E extends Comparable<E>> implements Tree<E> {
             if (e.compareTo(current.element) < 0) {
                 current = current.left;
             }
-            else if (e.compareTo(current.element) > 0) {
+             else if (e.compareTo(current.element) > 0) {
                 current = current.right;
             }
             else // element matches current.element
