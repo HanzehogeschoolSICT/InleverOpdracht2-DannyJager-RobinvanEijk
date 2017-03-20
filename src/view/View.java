@@ -18,7 +18,7 @@ import model.Model;
  * Class which contains the View for the application and starts it.
  * Created by robin on 13-3-17.
  */
-public class MainView extends Application {
+public class View extends Application {
 
     // Variables to create the BoggleField
     private static final int gap = 7;               // The size of the gaps between the labels
@@ -31,7 +31,7 @@ public class MainView extends Application {
     /**
      * Constructs the mainView of the application.
      */
-    public MainView(){
+    public View(){
         this.model = new Model();
         field = model.getField();
     }
@@ -46,7 +46,7 @@ public class MainView extends Application {
 
 
     /**
-     * Starts the JavaFX GUI.
+     * Constructs the JavaFX GUI.
      * @param stage
      */
     @Override
