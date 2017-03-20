@@ -14,7 +14,7 @@ public class HelperMethods {
      * @param array
      * @param boardCharacter
      */
-    public static String[] combinationsPerCharacter(String[][] array, BoardCharacter boardCharacter) {
+    public static BoardCharacter[] combinationsPerCharacter(String[][] array, BoardCharacter boardCharacter) {
 
         String up = null;
         String down = null;
@@ -25,46 +25,46 @@ public class HelperMethods {
         String lowerRight = null;
         String upperLeft = null;
 
-        String[] result = new String[8];
+        BoardCharacter[] result = new BoardCharacter[8];
 
         // Get character up
         if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length)) {
-             up = array[boardCharacter.getY()-1][boardCharacter.getX()];
+            result[0] = new BoardCharacter(boardCharacter.getY()-1, boardCharacter.getX(), array[boardCharacter.getY()-1][boardCharacter.getX()]);
         }
 
         // Get character down
         if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length)) {
-            down = array[boardCharacter.getY()+1][boardCharacter.getX()];
+            result[1] = new BoardCharacter(boardCharacter.getY()+1, boardCharacter.getX(), array[boardCharacter.getY()+1][boardCharacter.getX()]);
         }
 
         // Get character left
         if ((boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length)) {
-            left = array[boardCharacter.getY()][boardCharacter.getX()-1];
+            result[2] = new BoardCharacter(boardCharacter.getY(), boardCharacter.getX()-1, array[boardCharacter.getY()][boardCharacter.getX()-1]);
         }
 
         // Get character right
         if ((boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length)) {
-            right = array[boardCharacter.getY()][boardCharacter.getX()+1];
+            result[3] = new BoardCharacter(boardCharacter.getY(), boardCharacter.getX()+1, array[boardCharacter.getY()][boardCharacter.getX()+1]);
         }
 
         // Get character lower left
         if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length) && (boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length) ) {
-            lowerLeft = array[boardCharacter.getY()+1][boardCharacter.getX()-1];
+            result[4] = new BoardCharacter(boardCharacter.getY()+1, boardCharacter.getX()-1, array[boardCharacter.getY()+1][boardCharacter.getX()-1]);
         }
 
         // Get character upper right
         if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length) && (boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length) ) {
-            upperRight = array[boardCharacter.getY()-1][boardCharacter.getX()+1];
+            result[5] = new BoardCharacter(boardCharacter.getY()-1, boardCharacter.getX()+1, array[boardCharacter.getY()-1][boardCharacter.getX()+1]);
         }
 
         // Get character upper left
         if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length)  && (boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length)) {
-            upperLeft = array[boardCharacter.getY()-1][boardCharacter.getX()-1];
+            result[6] = new BoardCharacter(boardCharacter.getY()-1, boardCharacter.getX()-1, array[boardCharacter.getY()-1][boardCharacter.getX()-1]);
         }
 
         // Get character lower right
         if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length)  && (boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length)) {
-            lowerRight = array[boardCharacter.getY()+1][boardCharacter.getX()+1];
+            result[7] = new BoardCharacter(boardCharacter.getY()+1, boardCharacter.getX()+1, array[boardCharacter.getY()+1][boardCharacter.getX()+1]);
         }
 
         return result;

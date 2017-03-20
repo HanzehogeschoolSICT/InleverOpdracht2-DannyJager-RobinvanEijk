@@ -95,9 +95,9 @@ public class MainView extends Application {
            for (int x = 0; x < labelamount; x++) {
                System.out.print(boardCharacter[y][x].getCharacter());
                System.out.print(" neighbours: ");
-               String[] neighbours = HelperMethods.combinationsPerCharacter(charactersOnBoard, boardCharacter[y][x]);
-               System.out.println();
+               BoardCharacter[] neighbours = HelperMethods.combinationsPerCharacter(charactersOnBoard, boardCharacter[y][x]);
                boardCharacter[y][x].setNeighbours(neighbours);
+               System.out.println();
            }
        }
 

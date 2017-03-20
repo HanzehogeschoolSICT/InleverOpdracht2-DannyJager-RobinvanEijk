@@ -79,8 +79,16 @@ public class BoardCharacter {
      * Set the neighbours of this character
      * @param neighbours
      */
-    public void setNeighbours(String[] neighbours) {
+    public void setNeighbours(BoardCharacter[] neighbours) {
+        try {
+            System.out.println(neighbours[0].getCharacter());
+        } catch (Exception e) {
 
+        }
+
+//        for (BoardCharacter v : neighbours) {
+//            System.out.print(" [" + v.getCharacter() + "] ");
+//        }
         //this.neighbours = neighbours;
     }
 
