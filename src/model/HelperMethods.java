@@ -9,65 +9,65 @@ import java.util.List;
 public class HelperMethods {
 
     /**
-     * Source: http://stackoverflow.com/questions/15868914/how-to-get-2d-array-possible-combinations
+     * This method checks the combination of neighbours per character on the board
      *
-     * Produce a List<String> which contains every combination which can be
-     * made by taking one String from each inner String array within the
-     * provided two-dimensional String array.
-     * @param twoDimStringArray a two-dimensional String array which contains
-     * String arrays of variable length.
-     * @return a List which contains every String which can be formed by taking
-     * one String from each String array within the specified two-dimensional
-     * array.
+     * @param array
+     * @param boardCharacter
      */
-    public static List<String> possibleCombinations(String[][] twoDimStringArray) {
-        // keep track of the size of each inner String array
-        int sizeArray[] = new int[twoDimStringArray.length];
+    public static String[] combinationsPerCharacter(String[][] array, BoardCharacter boardCharacter) {
 
-        // keep track of the index of each inner String array which will be used
-        // to make the next combination
-        int counterArray[] = new int[twoDimStringArray.length];
+        String up = null;
+        String down = null;
+        String left = null;
+        String right = null;
+        String lowerLeft = null;
+        String upperRight = null;
+        String lowerRight = null;
+        String upperLeft = null;
 
-        // Discover the size of each inner array and populate sizeArray.
-        // Also calculate the total number of combinations possible using the
-        // inner String array sizes.
-        int totalCombinationCount = 1;
-        for(int i = 0; i < twoDimStringArray.length; ++i) {
-            sizeArray[i] = twoDimStringArray[i].length;
-            totalCombinationCount *= twoDimStringArray[i].length;
+        String[] result = new String[8];
+
+        // Get character up
+        if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length)) {
+             up = array[boardCharacter.getY()-1][boardCharacter.getX()];
         }
 
-        // Store the combinations in a List of String objects
-        List<String> combinationList = new ArrayList<String>(totalCombinationCount);
-
-        StringBuilder sb;  // more efficient than String for concatenation
-
-        for (int countdown = totalCombinationCount; countdown > 0; --countdown) {
-            // Run through the inner arrays, grabbing the member from the index
-            // specified by the counterArray for each inner array, and build a
-            // combination string.
-            sb = new StringBuilder();
-            for(int i = 0; i < twoDimStringArray.length; ++i) {
-                sb.append(twoDimStringArray[i][counterArray[i]]);
-            }
-            combinationList.add(sb.toString());  // add new combination to list
-
-            // Now we need to increment the counterArray so that the next
-            // combination is taken on the next iteration of this loop.
-            for(int incIndex = twoDimStringArray.length - 1; incIndex >= 0; --incIndex) {
-                if(counterArray[incIndex] + 1 < sizeArray[incIndex]) {
-                    ++counterArray[incIndex];
-                    // None of the indices of higher significance need to be
-                    // incremented, so jump out of this for loop at this point.
-                    break;
-                }
-                // The index at this position is at its max value, so zero it
-                // and continue this loop to increment the index which is more
-                // significant than this one.
-                counterArray[incIndex] = 0;
-            }
+        // Get character down
+        if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length)) {
+            down = array[boardCharacter.getY()+1][boardCharacter.getX()];
         }
-        return combinationList;
+
+        // Get character left
+        if ((boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length)) {
+            left = array[boardCharacter.getY()][boardCharacter.getX()-1];
+        }
+
+        // Get character right
+        if ((boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length)) {
+            right = array[boardCharacter.getY()][boardCharacter.getX()+1];
+        }
+
+        // Get character lower left
+        if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length) && (boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length) ) {
+            lowerLeft = array[boardCharacter.getY()+1][boardCharacter.getX()-1];
+        }
+
+        // Get character upper right
+        if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length) && (boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length) ) {
+            upperRight = array[boardCharacter.getY()-1][boardCharacter.getX()+1];
+        }
+
+        // Get character upper left
+        if ((boardCharacter.getY()-1 >= 0) && (boardCharacter.getY()-1 < array.length)  && (boardCharacter.getX()-1 >= 0) && (boardCharacter.getX()-1 < array.length)) {
+            upperLeft = array[boardCharacter.getY()-1][boardCharacter.getX()-1];
+        }
+
+        // Get character lower right
+        if ((boardCharacter.getY()+1 >= 0) && (boardCharacter.getY()+1 < array.length)  && (boardCharacter.getX()+1 >= 0) && (boardCharacter.getX()+1 < array.length)) {
+            lowerRight = array[boardCharacter.getY()+1][boardCharacter.getX()+1];
+        }
+
+        return result;
     }
 
 }

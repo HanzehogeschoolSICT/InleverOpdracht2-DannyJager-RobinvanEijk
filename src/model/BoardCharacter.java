@@ -11,7 +11,7 @@ public class BoardCharacter {
     private int y;                              // Y coordinates
     private boolean used = false;               // Flag containing if the character has already been used
     private LinkedList<Character> neighbours;   // LinkedList containing the neighbours of this character
-    private String value;                   // Content of this character
+    private String value;                       // Content of this character
 
     /**
      * Create a character
@@ -19,9 +19,9 @@ public class BoardCharacter {
      * @param yCor y coordinates
      * @param character value of this character
      */
-    public BoardCharacter(int xCor, int yCor, String character) {
-        this.x = xCor;
+    public BoardCharacter(int yCor, int xCor, String character) {
         this.y = yCor;
+        this.x = xCor;
         this.value = character;
     }
 
@@ -41,6 +41,14 @@ public class BoardCharacter {
     public void setY(int yCor) {
         this.y = yCor;
 
+    }
+
+    public int getX() {
+        return this.x;
+    }
+
+    public int getY() {
+        return this.y;
     }
 
     /**
@@ -71,8 +79,9 @@ public class BoardCharacter {
      * Set the neighbours of this character
      * @param neighbours
      */
-    public void setNeighbours(LinkedList<Character> neighbours) {
-        this.neighbours = neighbours;
+    public void setNeighbours(String[] neighbours) {
+
+        //this.neighbours = neighbours;
     }
 
     /**

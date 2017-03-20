@@ -12,7 +12,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.BST;
+import model.BoardCharacter;
 import model.CharacterModel;
+import model.HelperMethods;
 
 /**
  * Class which contains the View for the application and starts it.
@@ -31,12 +33,15 @@ public class MainView extends Application {
 
     private BST<String> binarySearchTree;
 
+    private BoardCharacter[][] boardCharacter;
+
     /**
      * Constructs the mainView of the application.
      */
     public MainView(){
         // Constructs
         charactersOnBoard = new String[labelamount][labelamount];
+        boardCharacter = new BoardCharacter[labelamount][labelamount];
         this.characterModel = new CharacterModel();
         this.binarySearchTree = new BST<String>();
     }
@@ -78,14 +83,23 @@ public class MainView extends Application {
         stage.show();
 
         /** Tijdelijk */
-        for (String[] x : charactersOnBoard) {
-            for (String v : x) {
-                System.out.print(v + " ");
-                binarySearchTree.add(v);
-            }
-            System.out.println();
-        }
-       binarySearchTree.postorder();
+//        for (String[] x : charactersOnBoard) {
+//            for (String v : x) {
+//                System.out.print(v + " ");
+//                binarySearchTree.add(v);
+//            }
+//            System.out.println();
+//        }
+//       binarySearchTree.postorder();
+       for (int y = 0; y < labelamount; y++) {
+           for (int x = 0; x < labelamount; x++) {
+               System.out.print(boardCharacter[y][x].getCharacter());
+               System.out.print(" neighbours: ");
+               String[] neighbours = HelperMethods.combinationsPerCharacter(charactersOnBoard, boardCharacter[y][x]);
+               System.out.println();
+               boardCharacter[y][x].setNeighbours(neighbours);
+           }
+       }
 
     }
 
@@ -107,6 +121,7 @@ public class MainView extends Application {
                 Label label = createBoggleLabel(randomCharacter);
                 gridPane.add(label,j,i);
                 charactersOnBoard[i][j] = randomCharacter;
+                boardCharacter[i][j] = new BoardCharacter(i, j, randomCharacter);
             }
         }
         return gridPane;
