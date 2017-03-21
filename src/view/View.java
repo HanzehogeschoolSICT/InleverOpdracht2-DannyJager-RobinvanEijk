@@ -1,8 +1,10 @@
 package view;
 
+import controller.Controller;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -24,8 +26,8 @@ public class View extends Application {
     private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
 
-    private BoardCharacter[][] field;
     private Model model;
+    private Controller controller;
 
 
     /**
@@ -33,14 +35,13 @@ public class View extends Application {
      */
     public View(){
         this.model = new Model();
-        field = model.getField();
+        this.controller = new Controller(model);
     }
 
     /**
      * Launches the JavaFX application
      */
     public void launchApplication() {
-        // Initialize the models
         launch();
     }
 
@@ -52,7 +53,7 @@ public class View extends Application {
     @Override
     public void start(Stage stage){
 
-        stage.setTitle("Boggle Opgave");
+        stage.setTitle("Boggle Solver");
 
         // Instantiate the GridPane with the boggleField
         GridPane boggleField = createBoggleField();
@@ -85,8 +86,8 @@ public class View extends Application {
         // Set the layout of the boggleField
         setBoggleFieldLayout(gridPane);
 
-
-        // Adds characters from the 2d array of BoardCharacters (field) to the gridPane
+        // Adds characters from the 2d array of BoardCharacters to the gridPane
+        BoardCharacter[][] field = model.getField();
         int x = 0;
         for (BoardCharacter[] boardCharacters : field) {
             int y = 0;
@@ -161,6 +162,9 @@ public class View extends Application {
         Button button = new Button("Solve");
         button.setPrefSize(90,40);
         button.setFont(new Font(17));
+        button.setOnAction(event ->
+                controller.Solve());
+
 
         return button;
     }

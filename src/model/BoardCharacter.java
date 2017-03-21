@@ -47,7 +47,7 @@ public class BoardCharacter {
      * return the x coordinate
      * @return
      */
-    private int getX(){
+    public int getX(){
         return x;
     }
 
@@ -63,7 +63,7 @@ public class BoardCharacter {
      * return the y coordinate
      * @return
      */
-    private int getY(){
+    public int getY(){
         return y;
     }
 

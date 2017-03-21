@@ -4,6 +4,7 @@ import text.TextReader;
 
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * Model which contains the Boggle field.
@@ -43,6 +44,7 @@ public class Model {
     private void setNeighBours(){
         for (int x = 0; x < field.length; x++){
             for (int y = 0; y < field.length; y++){
+                //TODO remove prints.
                 System.out.println("");
                 System.out.println(field[x][y].getCharacter());
                 field[x][y].setNeighbours(findNeighBours(x,y));
@@ -95,6 +97,11 @@ public class Model {
             System.out.print(" "+bc.getCharacter());
         }
         return neighbors;
+    }
+
+    public void findWords(){
+        //todo implement algorithm
+        System.out.println("Nog maar 0 woorden gevonden.");
     }
 
     /**
