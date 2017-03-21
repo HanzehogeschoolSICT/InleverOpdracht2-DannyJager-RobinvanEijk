@@ -1,6 +1,5 @@
 package model;
 
-import text.TextReader;
 import java.util.*;
 
 /**
@@ -9,7 +8,7 @@ import java.util.*;
  */
 public class Model {
     private final String filename = "src/text/woordenlijst.txt";        // The path to the Word list.
-    private final int fieldSize = 4;                                    // The size of the field
+    private final int fieldSize = 3;                                    // The size of the field
     private BoardCharacter[][] field;                                   // The 2 dimensional array which represents the boggle field.
     private TreeSet<String> wordList;                                   // A TreeSet containing the entire word list
     private ArrayList<String> words = new ArrayList<>();                // Arraylist with words.
