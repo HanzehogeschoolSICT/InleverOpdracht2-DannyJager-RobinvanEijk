@@ -25,7 +25,7 @@ public class MainView extends Application {
     // Variables to create the BoggleField
     private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
-    private static final int labelamount = 3;       // The amount columns and labels per column
+    private static final int labelamount = 4;       // The amount columns and labels per column
 
     private String[][] charactersOnBoard;
 
@@ -93,6 +93,7 @@ public class MainView extends Application {
 //       binarySearchTree.postorder();
        for (int y = 0; y < labelamount; y++) {
            for (int x = 0; x < labelamount; x++) {
+               // @todo System.out.prints tijdelijk voor debuggen
                System.out.print(boardCharacter[y][x].getCharacter());
                System.out.print(" neighbours: ");
                BoardCharacter[] neighbours = HelperMethods.combinationsPerCharacter(charactersOnBoard, boardCharacter[y][x]);

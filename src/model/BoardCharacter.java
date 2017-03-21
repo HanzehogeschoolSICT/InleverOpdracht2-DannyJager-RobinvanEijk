@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -10,7 +11,7 @@ public class BoardCharacter {
     private int x;                              // X coordinates
     private int y;                              // Y coordinates
     private boolean used = false;               // Flag containing if the character has already been used
-    private LinkedList<Character> neighbours;   // LinkedList containing the neighbours of this character
+    private ArrayList<BoardCharacter> neighbours;   // LinkedList containing the neighbours of this character
     private String value;                       // Content of this character
 
     /**
@@ -20,6 +21,7 @@ public class BoardCharacter {
      * @param character value of this character
      */
     public BoardCharacter(int yCor, int xCor, String character) {
+        neighbours = new ArrayList<>();
         this.y = yCor;
         this.x = xCor;
         this.value = character;
@@ -77,26 +79,29 @@ public class BoardCharacter {
 
     /**
      * Set the neighbours of this character
-     * @param neighbours
+     * @param neighbourArray
      */
-    public void setNeighbours(BoardCharacter[] neighbours) {
-        try {
-            System.out.println(neighbours[0].getCharacter());
-        } catch (Exception e) {
+    public void setNeighbours(BoardCharacter[] neighbourArray) {
 
+        // Loop over the neighbours and add the character to this object to register as a neighbour
+        for (BoardCharacter character : neighbourArray) {
+            if (character != null) {
+                neighbours.add(character);
+            }
         }
 
-//        for (BoardCharacter v : neighbours) {
-//            System.out.print(" [" + v.getCharacter() + "] ");
-//        }
-        //this.neighbours = neighbours;
+        // @todo tijdelijk voor debuggen
+        for (BoardCharacter character : neighbours) {
+            System.out.print("[" + character.getCharacter() + "] ");
+        }
+
     }
 
     /**
      * return the list of neighbours of this character
      * @return LinkedList<Character>
      */
-    public LinkedList<Character> getNeighbours(){
+    public ArrayList<BoardCharacter> getNeighbours(){
         return neighbours;
     }
 
