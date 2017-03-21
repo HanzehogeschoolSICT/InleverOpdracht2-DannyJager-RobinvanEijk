@@ -1,9 +1,7 @@
 package controller;
 
-
 import model.Model;
-
-import java.util.ArrayList;
+import view.View;
 
 /**
  * Controller which handles the actionEvent of the solveButton
@@ -11,24 +9,30 @@ import java.util.ArrayList;
  */
 public class Controller {
     private Model model;
+    private View view;
 
     /**
      * construct the Controller
      * @param model
      */
-    public Controller(Model model){
+    public Controller(Model model, View view){
         this.model = model;
+        this.view = view;
     }
 
     /**
-     * calls the findWords algorithm in the Model class
+     * calls the word finding algorithm in the Model class
      */
-    public void Solve(){
-        ArrayList<String> woorden = model.loopFindWords();
-        System.out.println("Gevonden woorden:  ");
-        for (String woord: woorden){
-            System.out.println(woord);
-        }
+    public void solve(){
+        model.startWordFinding();
+        updateFoundWordStage();
+    }
+
+    /**
+     * calls the updateFoundWordArea in the Model class to update it with the newest data.
+     */
+    private void updateFoundWordStage(){
+        view.updateFoundWordArea(model.getWords());
     }
 
 }

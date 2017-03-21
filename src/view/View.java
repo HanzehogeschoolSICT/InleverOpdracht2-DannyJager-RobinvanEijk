@@ -4,10 +4,10 @@ import controller.Controller;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.CacheHint;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -15,6 +15,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.BoardCharacter;
 import model.Model;
+
+import java.util.ArrayList;
 
 /**
  * Class which contains the View for the application and starts it.
@@ -25,6 +27,7 @@ public class View extends Application {
     // Variables to create the BoggleField
     private static final int gap = 7;               // The size of the gaps between the labels
     private static final double labelSize = 100;    // The height and width of the labels
+    private TextArea textArea;                      // TextArea which displays the found words
 
     private Model model;
     private Controller controller;
@@ -35,7 +38,7 @@ public class View extends Application {
      */
     public View(){
         this.model = new Model();
-        this.controller = new Controller(model);
+        this.controller = new Controller(model, this);
     }
 
     /**
@@ -58,6 +61,9 @@ public class View extends Application {
         // Instantiate the GridPane with the boggleField
         GridPane boggleField = createBoggleField();
 
+        // Instantiate the textArea for the found words.
+        textArea = createFoundWordArea();
+
         // Instantiate an HBox to add the solve button to
         HBox hBox = createButtonBox();
         Button button = createSolveButton();
@@ -67,12 +73,13 @@ public class View extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(boggleField);
         borderPane.setBottom(hBox);
+        borderPane.setRight(textArea);
 
         //Add the BorderPane to the javaFX scene and display the application.
         Scene scene = new Scene(borderPane);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
-
     }
 
 
@@ -146,7 +153,7 @@ public class View extends Application {
      */
     private HBox createButtonBox(){
         HBox hBox = new HBox();
-        hBox.setAlignment(Pos.CENTER_RIGHT);
+        hBox.setAlignment(Pos.CENTER);
         hBox.setPadding(new Insets(gap, gap, gap, gap));
         hBox.setStyle(  "-fx-background-color: grey;");
 
@@ -163,8 +170,34 @@ public class View extends Application {
         button.setPrefSize(90,40);
         button.setFont(new Font(17));
         button.setOnAction(event ->
-                controller.Solve());
+                controller.solve());
 
         return button;
+    }
+
+    /**
+     * creates the Stage for the found words.
+     */
+    private TextArea createFoundWordArea(){
+        TextArea textArea = new TextArea();
+        textArea.appendText("\nNo words found yet.");
+        textArea.appendText("\n\nClick solve to search words");
+        textArea.setEditable(false);
+        textArea.setMaxWidth(250);
+        textArea.setFont(new Font(15));
+
+        return textArea;
+    }
+
+    /**
+     * Gets called by the controller and update the textArea with the found words.
+     * @param words
+     */
+    public void updateFoundWordArea(ArrayList<String> words){
+        textArea.setText("\nNumber of words found: " + words.size());
+        textArea.appendText("\n\nWords found: ");
+        for (Object word : words){
+            textArea.appendText("\n" + word);
+        }
     }
 }

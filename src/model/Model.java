@@ -1,7 +1,6 @@
 package model;
 
 import text.TextReader;
-
 import java.util.*;
 
 /**
@@ -43,9 +42,6 @@ public class Model {
     private void setNeighBours(){
         for (int x = 0; x < field.length; x++){
             for (int y = 0; y < field.length; y++){
-                //TODO remove prints.
-                System.out.println("");
-                System.out.println(field[x][y].getCharacter());
                 field[x][y].setNeighbours(findNeighBours(x,y));
             }
         }
@@ -92,15 +88,15 @@ public class Model {
             neighbors.add(field[x+1][y+1]);
         }
 
-        for (BoardCharacter bc :neighbors){
-            System.out.print(" "+bc.getCharacter());
-        }
         return neighbors;
     }
 
 
-
-    public ArrayList<String> loopFindWords()
+    /**
+     * Start of the solving-Algorithm
+     * Loop through each character in the field and start the findWords method on it.
+     */
+    public void startWordFinding()
     {
         for (int i = 0; i < fieldSize; i++)
         {
@@ -109,39 +105,50 @@ public class Model {
                 findWords(field[i][j], field[i][j].getCharacter());
             }
         }
-        return words;
     }
 
+    /**
+     * For a given Boardcharacter find all possible words from this starting point by calling this method recursively.
+     * @param boardCharacter
+     * @param input
+     */
     private void findWords(BoardCharacter boardCharacter, String input) {
-        String oldInput;
+        String newInput;
+        // Uncomment this if 2 of the same words are not allowed.
         if(words.contains(input)){
             return;
         }
-        // check if input is heel woord of deel van het woord, of beide.
-        if (input.length() >=  3){
-            if(wordList.contains(input)){
-                words.add(input);
-            }
+
+        // If the wordList contains the input we add the input to the words array.
+        if(wordList.contains(input)){
+            words.add(input);
         }
 
+        // We iterate through the neighbours of the boardCharacter and call findWords() on them recursively.
         LinkedList<BoardCharacter> neighbours = boardCharacter.getNeighbours();
         for (BoardCharacter neighbour : neighbours) {
+            //Check if the neighbour isn't used in the input already.
             if (!neighbour.isUsed()) {
-                oldInput = input + neighbour.getCharacter();
+                newInput = input + neighbour.getCharacter();
                 boardCharacter.setUsed(true);
-                findWords(neighbour, oldInput);
+                findWords(neighbour, newInput);
             }
             boardCharacter.setUsed(false);
         }
     }
 
+    /**
+     * Return the arrayList with the found words in it.
+     * @return words
+     */
+    public ArrayList<String> getWords(){
+        return words;
+    }
 
-
-
-/**
- * returns the 2 dimensional field
- * @return field
- */
+    /**
+    * returns the 2 dimensional field
+    * @return field
+    */
     public BoardCharacter[][] getField(){
         return field;
     }
