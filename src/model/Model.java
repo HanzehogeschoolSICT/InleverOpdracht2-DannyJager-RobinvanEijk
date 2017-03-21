@@ -8,7 +8,7 @@ import java.util.*;
  */
 public class Model {
     private final String filename = "src/text/woordenlijst.txt";        // The path to the Word list.
-    private final int fieldSize = 3;                                    // The size of the field
+    private final int fieldSize = 4;                                    // The size of the field
     private BoardCharacter[][] field;                                   // The 2 dimensional array which represents the boggle field.
     private TreeSet<String> wordList;                                   // A TreeSet containing the entire word list
     private ArrayList<String> words = new ArrayList<>();                // Arraylist with words.
@@ -55,37 +55,28 @@ public class Model {
     private LinkedList<BoardCharacter> findNeighBours(int x,int y){
         LinkedList<BoardCharacter> neighbors= new LinkedList<>();
         // Find neighbour on the left top
-        if (x-1 >= 0 && y-1 >= 0){
-            neighbors.add(field[x-1][y-1]);
-        }
+        if (x-1 >= 0 && y-1 >= 0) neighbors.add(field[x-1][y-1]);
+        
         // Find neighbour on the left
-        if (x-1 >= 0){
-            neighbors.add(field[x-1][y]);
-        }
+        if (x-1 >= 0) neighbors.add(field[x-1][y]);
+
         // Find neighbour on the left bottom
-        if (x-1 >= 0 && y+1 < fieldSize){
-            neighbors.add(field[x-1][y+1]);
-        }
+        if (x-1 >= 0 && y+1 < fieldSize) neighbors.add(field[x-1][y+1]);
+
         // Find neighbour on the bottom
-        if (y+1 < fieldSize){
-            neighbors.add(field[x][y+1]);
-        }
+        if (y+1 < fieldSize) neighbors.add(field[x][y+1]);
+
         // Find neighbour on the top
-        if (y-1 >= 0){
-            neighbors.add(field[x][y-1]);
-        }
+        if (y-1 >= 0) neighbors.add(field[x][y-1]);
+
         // Find neighbour on the right top
-        if (x+1 < fieldSize && y-1 >= 0){
-            neighbors.add(field[x+1][y-1]);
-        }
+        if (x+1 < fieldSize && y-1 >= 0) neighbors.add(field[x+1][y-1]);
+
         // Find neighbour on the right
-        if (x+1 < fieldSize){
-            neighbors.add(field[x+1][y]);
-        }
+        if (x+1 < fieldSize) neighbors.add(field[x+1][y]);
+
         // Find neighbour on the right bottom
-        if (x+1 < fieldSize && y+1 < fieldSize){
-            neighbors.add(field[x+1][y+1]);
-        }
+        if (x+1 < fieldSize && y+1 < fieldSize) neighbors.add(field[x+1][y+1]);
 
         return neighbors;
     }
