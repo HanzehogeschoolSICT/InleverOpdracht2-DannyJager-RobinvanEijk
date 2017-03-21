@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Created by robin on 13-3-17.
  */
 public class Model {
-    private final String filename = "src/text/woordenlijst.txt";        // The path to the Word list.  
+    private final String filename = "src/text/woordenlijst.txt";        // The path to the Word list.
     private final int fieldSize = 3;                // The size of the field
     private BoardCharacter[][] field;               // The 2 dimensional array which represents the boggle field.
     private HashSet<String> wordList;               // A HashSet containing the entire word list
