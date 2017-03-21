@@ -125,9 +125,9 @@ public class View extends Application {
      * Creates and returns a Label with a random character from the alphabet in it, and sets the correct style.
      * @return Label
      */
-    private Label createBoggleLabel(char randomCharacter){
+    private Label createBoggleLabel(String randomCharacter){
         //Create new label with a random character in it
-        Label label = new Label(randomCharacter + "");
+        Label label = new Label(randomCharacter);
 
         // Set the layout of the label
         label.setFont(new Font(35));

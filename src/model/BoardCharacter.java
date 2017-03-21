@@ -12,7 +12,7 @@ public class BoardCharacter {
     private int y;                              // Y coordinates
     private boolean used = false;               // Flag containing if the character has already been used
     private LinkedList<BoardCharacter> neighbours;   // LinkedList containing the neighbours of this character
-    private char value;                   // Content of this character
+    private String value;                   // Content of this character
 
     /**
      * Create a character
@@ -22,14 +22,14 @@ public class BoardCharacter {
     public BoardCharacter(int xCor, int yCor) {
         this.x = xCor;
         this.y = yCor;
-        this.value = createRandomCharacter();
+        this.value = String.valueOf(createRandomCharacter());
     }
 
     /**
      * Returns a random character from the alphabet.
      * @return char
      */
-    public char createRandomCharacter(){
+    private char createRandomCharacter(){
         Random r = new Random();
         char c = (char) (r.nextInt(26) + 'a');
         return c;
@@ -77,7 +77,6 @@ public class BoardCharacter {
 
     /**
      * set if the character has been used
-     * @param used
      */
     public void setUsed(boolean used) {
         this.used = used;
@@ -87,7 +86,7 @@ public class BoardCharacter {
      * return the content of the character
      * @return character
      */
-    public char getCharacter() {
+    public String getCharacter() {
         return value;
     }
 

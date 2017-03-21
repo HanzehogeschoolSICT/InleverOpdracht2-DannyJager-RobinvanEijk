@@ -2,9 +2,7 @@ package model;
 
 import text.TextReader;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Model which contains the Boggle field.
@@ -12,16 +10,17 @@ import java.util.Random;
  */
 public class Model {
     private final String filename = "src/text/woordenlijst.txt";        // The path to the Word list.
-    private final int fieldSize = 3;                // The size of the field
-    private BoardCharacter[][] field;               // The 2 dimensional array which represents the boggle field.
-    private HashSet<String> wordList;               // A HashSet containing the entire word list
+    private final int fieldSize = 4;                                    // The size of the field
+    private BoardCharacter[][] field;                                   // The 2 dimensional array which represents the boggle field.
+    private TreeSet<String> wordList;                                   // A TreeSet containing the entire word list
+    private ArrayList<String> words = new ArrayList<>();                // Arraylist with words.
 
     /**
      * Constructs the model with the data structure to save the board
      */
     public Model(){
         TextReader textReader = new TextReader();
-        wordList = textReader.textFileToSet(filename);
+        wordList = textReader.textFileToTreeSet(filename);
         createField();
         setNeighBours();
     }
@@ -99,16 +98,50 @@ public class Model {
         return neighbors;
     }
 
-    public void findWords(){
-        //todo implement algorithm
-        System.out.println("");
-        System.out.println("Nog maar 0 woorden gevonden.");
+
+
+    public ArrayList<String> loopFindWords()
+    {
+        for (int i = 0; i < fieldSize; i++)
+        {
+            for (int j = 0; j < fieldSize; j++)
+            {
+                findWords(field[i][j], field[i][j].getCharacter());
+            }
+        }
+        return words;
     }
 
-    /**
-     * returns the 2 dimensional field
-     * @return field
-     */
+    private void findWords(BoardCharacter boardCharacter, String input) {
+        String oldInput;
+        if(words.contains(input)){
+            return;
+        }
+        // check if input is heel woord of deel van het woord, of beide.
+        if (input.length() >=  3){
+            if(wordList.contains(input)){
+                words.add(input);
+            }
+        }
+
+        LinkedList<BoardCharacter> neighbours = boardCharacter.getNeighbours();
+        for (BoardCharacter neighbour : neighbours) {
+            if (!neighbour.isUsed()) {
+                oldInput = input + neighbour.getCharacter();
+                boardCharacter.setUsed(true);
+                findWords(neighbour, oldInput);
+            }
+            boardCharacter.setUsed(false);
+        }
+    }
+
+
+
+
+/**
+ * returns the 2 dimensional field
+ * @return field
+ */
     public BoardCharacter[][] getField(){
         return field;
     }
