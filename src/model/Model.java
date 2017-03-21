@@ -101,6 +101,7 @@ public class Model {
 
     public void findWords(){
         //todo implement algorithm
+        System.out.println("");
         System.out.println("Nog maar 0 woorden gevonden.");
     }
 

@@ -165,7 +165,6 @@ public class View extends Application {
         button.setOnAction(event ->
                 controller.Solve());
 
-
         return button;
     }
 }
